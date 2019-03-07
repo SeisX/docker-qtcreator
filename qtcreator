@@ -1,0 +1,4 @@
+#!bin/bash
+
+# Set_Variable -name DISPLAY -value [your ip]:0.0
+docker run -it --rm -e DISPLAY=$DISPLAY seisgo/qtcreator:0.1
