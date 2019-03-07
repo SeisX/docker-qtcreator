@@ -67,8 +67,34 @@ Test running GUI Docker application
 
 # Solution
 - - [ ] *Todo*
+- Trail 1
+    - According to some references ([1], [2], [3]), following operations are added in Dockerfile:
+        ```sh
+        yum install -y libxkbcommon libxkbcommon-devel libxkbcommon-x11 libxkbcommon-x11-devel \
+        yum install -y libqtxdg libqtxdg-devel freeglut freeglut-devel \
+        yum install -y mesa-libGL mesa-libGL-devel mesa-libEGL mesa-libGLU\ 
+        ```
+    - With above modification, failure information is as follows:
+        ```sh
+        QStandardPaths: XDG_RUNTIME_DIR not set, defaulting to '/tmp/runtime-developer'
+        libGL error: unable to load driver: swrast_dri.so
+        libGL error: failed to load driver: swrast
+        QQuickWidget: Failed to make context current
+        QQuickWidget::resizeEvent() no OpenGL context
+        QQuickWidget: Failed to make context current
+        QQuickWidget: Attempted to render scene with no context
+        composeAndFlush: makeCurrent() failed
+        composeAndFlush: makeCurrent() failed
+        composeAndFlush: makeCurrent() failed
+        ```
+        We can see that some failures about *XKB* disapper.
 
 # References
 - [Run GUI app in linux docker container on windows host](https://dev.to/darksmile92/run-gui-app-in-linux-docker-container-on-windows-host-4kde)
 - [Running GUI apps with Docker - Fabio Rehm's Blog](http://fabiorehm.com/blog/2014/09/11/running-gui-apps-with-docker/)
+- [QT 5.4 ON RED HAT ENTERPRISE 5][3]
+
+[1]: https://access.redhat.com/solutions/56301 "How to get OpenGL libraries in Red Hat Enterprise Linux 6."
+[2]: https://github.com/pyqt/python-qt5/wiki/Compiling-for-CentOS-7 "pyqt/python-qt5: Compiling for CentOS 7"
+[3]: https://kate-editor.org/2014/12/22/qt-5-4-on-red-hat-enterprise-5/ "QT 5.4 ON RED HAT ENTERPRISE 5"
 
